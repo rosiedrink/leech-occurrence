@@ -146,20 +146,20 @@ df2
 
 
 null.plot.psi <- ggplot(df, aes(species, estimate, colour = species)) + 
-  geom_errorbar(mapping = aes(x = species, ymin = estimate - SE, ymax = estimate + SE), width = 0.1, size = 1.5)
+                geom_errorbar(mapping = aes(x = species, ymin = estimate - SE, ymax = estimate + SE), width = 0.1, size = 1.5)
 null.plot.psi <- null.plot.psi + geom_point(size = 3.5, shape = 21, fill = "white") +
-  facet_wrap(.~year, nrow =1) + theme_bw()
+                facet_wrap(.~year, nrow =1) + theme_bw()
 null.plot.psi <- null.plot.psi + ylab("Occupancy probability") + xlab("") + 
-  labs(tag = "A)") + ylim(0,1) +
-  scale_colour_manual(values = c("saddlebrown", "forestgreen", "saddlebrown", "forestgreen"))
+                labs(tag = "A)") + ylim(0,1) +
+                scale_colour_manual(values = c("saddlebrown", "forestgreen", "saddlebrown", "forestgreen"))
 null.plot.psi <- null.plot.psi + theme(text = element_text(size = 25),
-                                       strip.background = element_blank(), strip.text = element_blank(),
-                                       axis.title.y = element_text(margin = margin(r = 20)),
-                                       legend.title = element_blank(),
-                                       legend.text = element_text(margin = margin(c(5, 5, 5, 0))),
-                                       axis.text.x = element_text(margin = margin(c(5, 0, 0, 0))),
-                                       axis.text.y = element_text(margin = margin(c(0, 5, 0, 0))),
-                                       plot.title = element_text(margin = margin(c(0, 0, 5, 0))), legend.position = "none")
+                               strip.background = element_blank(), strip.text = element_blank(),
+                               axis.title.y = element_text(margin = margin(r = 20)),
+                               legend.title = element_blank(),
+                               legend.text = element_text(margin = margin(c(5, 5, 5, 0))),
+                               axis.text.x = element_text(margin = margin(c(5, 0, 0, 0))),
+                               axis.text.y = element_text(margin = margin(c(0, 5, 0, 0))),
+                               plot.title = element_text(margin = margin(c(0, 0, 5, 0))), legend.position = "none")
 null.plot.psi
 ggsave("figures/Fig.2.SeasonalOccupancy.png", height = 12.8, width = 10.9)
 
@@ -171,13 +171,13 @@ null.plot.p <- null.plot.p + ylim(0,1) + ylab("Detection probability") + xlab(""
   labs(tag = "B)")+
   scale_colour_manual(values = c("saddlebrown", "forestgreen", "saddlebrown", "forestgreen"))
 null.plot.p <- null.plot.p + theme(text = element_text(size = 25),
-                                   strip.background = element_blank(), strip.text = element_blank(),
-                                   axis.title.y = element_text(margin = margin(r = 20)),
-                                   legend.title = element_blank(),
-                                   legend.text = element_text(margin = margin(c(5, 5, 5, 0))),
-                                   axis.text.x = element_text(margin = margin(c(5, 0, 0, 0))),
-                                   axis.text.y = element_text(margin = margin(c(0, 5, 0, 0))),
-                                   plot.title = element_text(margin = margin(c(0, 0, 5, 0))), legend.position = "none")
+                                       strip.background = element_blank(), strip.text = element_blank(),
+                                       axis.title.y = element_text(margin = margin(r = 20)),
+                                       legend.title = element_blank(),
+                                       legend.text = element_text(margin = margin(c(5, 5, 5, 0))),
+                                       axis.text.x = element_text(margin = margin(c(5, 0, 0, 0))),
+                                       axis.text.y = element_text(margin = margin(c(0, 5, 0, 0))),
+                                       plot.title = element_text(margin = margin(c(0, 0, 5, 0))), legend.position = "none")
 null.plot.p
 ggsave("figures/Fig.2.SeasonalDetection.png", height = 12.8, width = 10.9)
 
@@ -328,17 +328,10 @@ fms.tiger16 <- fitList("m1" = fm1.tiger16,
                        "m12" = fm12.tiger16,
                        "m13" = fm13.tiger16)
 
-# Select the best models
-(ms.brown15 <- modSel(fms.brown15)) #m9  - detection structure
+(ms.brown15 <- modSel(fms.brown15)) #m9  -detection structure
 (ms.tiger15 <- modSel(fms.tiger15)) #m11 - detection structure
 (ms.brown16 <- modSel(fms.brown16)) #m9 - detection structure
 (ms.tiger16 <- modSel(fms.tiger16)) #m6 - detection structure
-
-# Best fitting models
-# (fm9.brown15 <- occu(~effort+height ~, brown15.umf))
-# (fm11.tiger15 <- occu(~date+height ~1, tiger15.umf))
-# (fm9.brown16 <- occu(~effort+height ~1, brown16.umf))
-# (fm6.tiger16 <- occu(~effort+height+moran ~1, tiger16.umf))
 
 ##################################################
 ## Occupancy structure
@@ -403,12 +396,6 @@ fms.tiger16.all <- fitList("m6"  = fm6.tiger16,
 (ms.brown16.all <- modSel(fms.brown16.all)) #m16, m15, m14
 (ms.tiger16.all <- modSel(fms.tiger16.all)) #m17, m16, m14
 
-# (brown15.GOF <- mb.gof.test(fm2.brown15, nsim = 100)) # c-hat = 3.16
-# (tiger15.GOF <- mb.gof.test(fm2.tiger15, nsim = 100)) # c-hat = 2.08
-# (brown16.GOF <- mb.gof.test(fm2.brown16, nsim = 100)) # c-hat = 2.84
-# (tiger16.GOF <- mb.gof.test(fm2.tiger16, nsim = 100)) # c-hat = 2.26
-
-
 # Using qAICc for small and overdispersed 
 QAIC.B15 <- QAIC(fm9.brown15, fm14.brown15, fm15.brown15, fm16.brown15, fm17.brown15, chat = 3.16)
 QAIC.B15[order(QAIC.B15$QAIC),]
@@ -427,7 +414,6 @@ aveB15 <- model.avg(list("m17"  = fm17.brown15, "m16"  = fm16.brown15, "m9"  = f
                     rank = "QAIC", rank.args = list(chat = 3.16))
 # For plotting 
 fmsAve.B15 <- fitList("m17"  = fm17.brown15, "m16"  = fm16.brown15, "m9"  = fm9.brown15)
-summary(aveB15)
 
 # Average T15
 aveT15 <- model.avg(list("m16"  = fm16.tiger15, "m17"  = fm17.tiger15, "m15"  = fm15.tiger15), fit = TRUE,
@@ -444,30 +430,17 @@ fmsAve.B16 <- fitList("m16"  = fm16.brown16, "m17"  = fm17.brown16, "m9"  = fm9.
 summary(aveB16)
 
 # Average T16
-model.avg(dd, subset = cumsum(weight) <= .95)
 aveT16 <- model.avg(list("m17"  = fm17.tiger16, "m9"  = fm9.tiger16), subset = cumsum(weight) <= .95, fit = TRUE, rank = "QAIC", rank.args = list(chat = 2.26))
+
 # For plotting 
 fmsAve.T16 <- fitList("m17"  = fm17.tiger16, "m9"  = fm9.tiger16)
 summary(aveT16)
-
-
-sink("modelAveAll.CI.txt")
-summary(aveB15)
-confint(aveB15)
-summary(aveT15)
-confint(aveT15)
-summary(aveB16)
-confint(aveB16)
-summary(aveT16)
-confint(aveT16)
-sink()
 
 ########################################################################
 ## Brown dry prediction plots
 ########################################################################
 
 # predict new data using the averaged model - select values based on min and max of the umf
-summary(brown15.umf)
 newDataBrownDry1 <- data.frame(height = seq(-2.23265, 2.80800, by = 0.01), moran = 0)
 pred.occ.heightB15 <- predict(fmsAve.B15, type = "state", newdata = newDataBrownDry1, appendData = TRUE)
 
@@ -493,7 +466,6 @@ pred.det.moranB15 <- predict(fmsAve.B15, type = "det", newdata = newDataBrownDry
 ########################################################################
 
 # predict new data using the averaged model - select values based on min and max of the umf
-summary(tiger15.umf)
 newDataTigerDry1 <- data.frame(height = seq(-2.23265, 2.80800, by = 0.01), moran = 0)
 pred.occ.heightT15 <- predict(fmsAve.T15, type = "state", newdata = newDataTigerDry1, appendData = TRUE)
 
@@ -519,7 +491,6 @@ pred.det.moranT15 <- predict(fmsAve.T15, type = "det", newdata = newDataTigerDry
 ########################################################################
 
 # predict new data using the averaged model - select values based on min and max of the umf
-summary(brown16.umf)
 newDataBrownWet1 <- data.frame(height = seq(-2.23265, 2.80800, by = 0.01), moran = 0)
 pred.occ.heightB16 <- predict(fmsAve.B16, type = "state", newdata = newDataBrownWet1, appendData = TRUE)
 
@@ -545,7 +516,6 @@ pred.det.moranB16 <- predict(fmsAve.B16, type = "det", newdata = newDataBrownWet
 ########################################################################
 
 # predict new data using the averaged model - select values based on min and max of the umf
-summary(tiger16.umf)
 newDataTigerWet1 <- data.frame(height = seq(-2.23265, 2.80800, by = 0.01), moran = 0)
 pred.occ.heightT16 <- predict(fmsAve.T16, type = "state", newdata = newDataTigerWet1, appendData = TRUE)
 
@@ -557,14 +527,14 @@ pred.occ.moranT16 <- predict(fmsAve.T16, type = "state", newdata = newDataTigerW
 newDataTigerWet3 <- data.frame(height = seq(-2.23265, 2.80800, by = 0.01), date = 0, effort = 0, moran = 0)
 pred.det.heightT16 <- predict(fmsAve.T16, type = "det", newdata = newDataTigerWet3, appendData = TRUE)
 
-newDataTigerWet4 <- data.frame(height = 0, date = seq(-1.6578, 1.6194, by = 0.01), effort = 0, moran = 0)
-pred.det.dateT16 <- predict(fmsAve.T16, type = "det", newdata = newDataTigerWet4, appendData = TRUE)
-
 newDataTigerWet5 <- data.frame(height = 0, date = 0, effort = seq(-1.80297, 2.56551, by = 0.01), moran = 0)
 pred.det.effT16 <- predict(fmsAve.T16, type = "det", newdata = newDataTigerWet5, appendData = TRUE)
 
 newDataTigerWet6 <- data.frame(height = 0, date = 0, effort = 0, moran = seq(-2.62339, 2.51316, by = 0.01))
 pred.det.moranT16 <- predict(fmsAve.T16, type = "det", newdata = newDataTigerWet6, appendData = TRUE)
+
+#################################
+# Plots for the paper
 
 ######################################################
 # Calculate the means and sd of the covariates - to transform from scaled data
@@ -594,18 +564,6 @@ xticksM <- -2:2
 xlabsM <- xticksM*moran.sd + moran.mean
 xlabsM <- round(xlabsM, 1)
 
-# brown15[,8:11]
-# sc <- as.numeric(rbind(brown15[,8], brown15[,9], brown15[,10], brown15[,11]))
-# sc[is.na(sc)] <- 0
-# 
-# date.mean <- mean(sc)
-# date.sd <- sd(sc1)
-# date.z <- (sc1 - date.mean) / date.sd
-# 
-# xticksD <- -1:1
-# xlabsD <- xticksD*date.sd + date.mean
-# xlabsD <- round(xlabsD, 1)
-
 sc6 <- as.numeric(rbind(brown15[,12], brown15[,13], brown15[,14], brown15[,15]))
 effort.mean <- mean(sc6)
 effort.sd <- sd(sc6)
@@ -631,8 +589,8 @@ B2 <- ggplot(pred.occ.moranB15) + geom_line(aes(moran,Predicted), size = 1, colo
   geom_ribbon(aes(ymin = lower, ymax = upper, x = moran), alpha = 0.2, fill = "saddlebrown") +
   ylim(0,1) + scale_x_continuous(breaks = xticksM, labels = xlabsM) + labs(tag = "B)") +
   theme_bw() + xlab("") + ylab("") + theme(axis.title.y = element_text(margin = margin(c(0, 20, 0, 0))),
-                                           text = element_text(size = 18),
-                                           plot.tag.position = c(0.038,0.99))
+                                          text = element_text(size = 18),
+                                          plot.tag.position = c(0.038,0.99))
 
 T1 <- ggplot(pred.occ.heightT15) + geom_line(aes(height,Predicted), size = 1, colour = "forestgreen") + 
   geom_ribbon(aes(ymin = lower, ymax = upper, x = height), alpha = 0.2, fill = "forestgreen") +
@@ -666,17 +624,17 @@ T7 <- ggplot(pred.occ.heightT16) + geom_line(aes(height,Predicted), size = 1, co
   geom_ribbon(aes(ymin = lower, ymax = upper, x = height), alpha = 0.2, fill = "forestgreen") +
   ylim(0,1) + scale_x_continuous(breaks = xticksH, labels = xlabsH) + labs(tag = "G)") +
   theme_bw() + xlab("Canopy height") + ylab("Occupancy probability") + theme(axis.title.y = element_text(margin = margin(c(0, 20, 0, 0))),
-                                                                             text = element_text(size = 18),
-                                                                             plot.tag.position = c(0.038,0.99),
-                                                                             axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
+                                                                text = element_text(size = 18),
+                                                                plot.tag.position = c(0.038,0.99),
+                                                                axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
 
 T8 <- ggplot(pred.occ.moranT16) + geom_line(aes(moran,Predicted), size = 1, colour = "forestgreen") + 
   geom_ribbon(aes(ymin = lower, ymax = upper, x = moran), alpha = 0.2, fill = "forestgreen") +
   ylim(0,1) + scale_x_continuous(breaks = xticksM, labels = xlabsM) + labs(tag = "H)") +
   theme_bw() + xlab("Habitat heterogeneity") + ylab("") + theme(axis.title.y = element_text(margin = margin(c(0, 20, 0, 0))),
-                                                                text = element_text(size = 18),
-                                                                plot.tag.position = c(0.038,0.99),
-                                                                axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
+                                           text = element_text(size = 18),
+                                           plot.tag.position = c(0.038,0.99),
+                                           axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
 
 Occ <- ggarrange(B1, B2, T1, T2,
                  B7, B8, T7, T8, nrow = 4, ncol = 2)
@@ -694,21 +652,13 @@ B3 <- ggplot(pred.det.heightB15) + geom_line(aes(height,Predicted), size = 1, co
   geom_ribbon(aes(ymin = lower, ymax = upper, x = height), alpha = 0.2, fill = "saddlebrown") +
   ylim(0,1) + scale_x_continuous(breaks = xticksH, labels = xlabsH) + labs(tag = "A)") +
   theme_bw() + xlab("") + ylab("Detection probability") + theme(axis.title.y = element_text(margin = margin(c(0, 20, 0, 0))),
-                                                                text = element_text(size = 18),
-                                                                plot.tag.position = c(0.038,0.99),
-                                                                axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
+                                                                             text = element_text(size = 18),
+                                                                             plot.tag.position = c(0.038,0.99),
+                                                                             axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
 
 B6 <- ggplot(pred.det.moranB15) + geom_line(aes(moran,Predicted), size = 1, colour = "saddlebrown") + 
   geom_ribbon(aes(ymin = lower, ymax = upper, x = moran), alpha = 0.2, fill = "saddlebrown") +
   ylim(0,1) + scale_x_continuous(breaks = xticksM, labels = xlabsM) + labs(tag = "B)") +
-  theme_bw() + xlab("") + ylab("") + theme(axis.title.y = element_text(margin = margin(c(0, 20, 0, 0))),
-                                           text = element_text(size = 18),
-                                           plot.tag.position = c(0.038,0.99),
-                                           axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
-
-B4 <- ggplot(pred.det.dateB15) + geom_line(aes(date,Predicted), size = 1, colour = "saddlebrown") + 
-  geom_ribbon(aes(ymin = lower, ymax = upper, x = date), alpha = 0.2, fill = "saddlebrown") +
-  ylim(0,1) + labs(tag = "C)") +
   theme_bw() + xlab("") + ylab("") + theme(axis.title.y = element_text(margin = margin(c(0, 20, 0, 0))),
                                            text = element_text(size = 18),
                                            plot.tag.position = c(0.038,0.99),
@@ -726,9 +676,9 @@ T3 <- ggplot(pred.det.heightT15) + geom_line(aes(height,Predicted), size = 1, co
   geom_ribbon(aes(ymin = lower, ymax = upper, x = height), alpha = 0.2, fill = "forestgreen") +
   ylim(0,1) + scale_x_continuous(breaks = xticksH, labels = xlabsH) + labs(tag = "D)") +
   theme_bw() + xlab("") + ylab("Detection probability") + theme(axis.title.y = element_text(margin = margin(c(0, 20, 0, 0))),
-                                                                text = element_text(size = 18),
-                                                                plot.tag.position = c(0.038,0.99),
-                                                                axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
+                                                                             text = element_text(size = 18),
+                                                                             plot.tag.position = c(0.038,0.99),
+                                                                             axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
 
 T6 <- ggplot(pred.det.moranT15) + geom_line(aes(moran,Predicted), size = 1, colour = "forestgreen") + 
   geom_ribbon(aes(ymin = lower, ymax = upper, x = moran), alpha = 0.2, fill = "forestgreen") +
@@ -738,40 +688,24 @@ T6 <- ggplot(pred.det.moranT15) + geom_line(aes(moran,Predicted), size = 1, colo
                                            plot.tag.position = c(0.038,0.99),
                                            axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
 
-T4 <- ggplot(pred.det.dateT15) + geom_line(aes(date,Predicted), size = 1, colour = "forestgreen") + 
-  geom_ribbon(aes(ymin = lower, ymax = upper, x = date), alpha = 0.2, fill = "forestgreen") +
-  ylim(0,1) + labs(tag = "G)") +
-  theme_bw() + xlab("") + ylab("") + theme(axis.title.y = element_text(margin = margin(c(0, 20, 0, 0))),
-                                           text = element_text(size = 18),
-                                           plot.tag.position = c(0.038,0.99),
-                                           axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
-
 T5 <- ggplot(pred.det.effT15) + geom_line(aes(effort,Predicted), size = 1, colour = "forestgreen") + 
   geom_ribbon(aes(ymin = lower, ymax = upper, x = effort), alpha = 0.2, fill = "forestgreen") +
   ylim(0,1) + scale_x_continuous(breaks = xticksE, labels = xlabsE) + labs(tag = "F)") +
   theme_bw() + xlab("") + ylab("") + theme(axis.title.y = element_text(margin = margin(c(0, 20, 0, 0))),
-                                           text = element_text(size = 18),
-                                           plot.tag.position = c(0.038,0.99),
-                                           axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
+                                                                    text = element_text(size = 18),
+                                                                    plot.tag.position = c(0.038,0.99),
+                                                                    axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
 
 B9 <- ggplot(pred.det.heightB16) + geom_line(aes(height,Predicted), size = 1, colour = "saddlebrown") + 
   geom_ribbon(aes(ymin = lower, ymax = upper, x = height), alpha = 0.2, fill = "saddlebrown") +
   ylim(0,1) + scale_x_continuous(breaks = xticksH, labels = xlabsH) + labs(tag = "G)") +
   theme_bw() + xlab("") + ylab("Detection probability") + theme(axis.title.y = element_text(margin = margin(c(0, 20, 0, 0))),
-                                                                text = element_text(size = 18),
-                                                                plot.tag.position = c(0.038,0.99),
-                                                                axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
+                                                                             text = element_text(size = 18),
+                                                                             plot.tag.position = c(0.038,0.99),
+                                                                             axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
 B12 <- ggplot(pred.det.moranB16) + geom_line(aes(moran,Predicted), size = 1, colour = "saddlebrown") + 
   geom_ribbon(aes(ymin = lower, ymax = upper, x = moran), alpha = 0.2, fill = "saddlebrown") +
   ylim(0,1) + scale_x_continuous(breaks = xticksM, labels = xlabsM) + labs(tag = "H)") +
-  theme_bw() + xlab("") + ylab("") + theme(axis.title.y = element_text(margin = margin(c(0, 20, 0, 0))),
-                                           text = element_text(size = 18),
-                                           plot.tag.position = c(0.038,0.99),
-                                           axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
-
-B10 <- ggplot(pred.det.dateB16) + geom_line(aes(date,Predicted), size = 1, colour = "saddlebrown") + 
-  geom_ribbon(aes(ymin = lower, ymax = upper, x = date), alpha = 0.2, fill = "saddlebrown") +
-  ylim(0,1) + labs(tag = "K)") +
   theme_bw() + xlab("") + ylab("") + theme(axis.title.y = element_text(margin = margin(c(0, 20, 0, 0))),
                                            text = element_text(size = 18),
                                            plot.tag.position = c(0.038,0.99),
@@ -802,33 +736,13 @@ T12 <- ggplot(pred.det.moranT16) + geom_line(aes(moran,Predicted), size = 1, col
                                                                 plot.tag.position = c(0.038,0.99),
                                                                 axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
 
-T10 <- ggplot(pred.det.dateT16) + geom_line(aes(date,Predicted), size = 1, colour = "forestgreen") + 
-  geom_ribbon(aes(ymin = lower, ymax = upper, x = date), alpha = 0.2, fill = "forestgreen") +
-  ylim(0,1) + labs(tag = "O)") +
-  theme_bw() + xlab("Date") + ylab("") + theme(axis.title.y = element_text(margin = margin(c(0, 20, 0, 0))),
-                                               text = element_text(size = 18),
-                                               plot.tag.position = c(0.038,0.99),
-                                               axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
-
 T11 <- ggplot(pred.det.effT16) + geom_line(aes(effort,Predicted), size = 1, colour = "forestgreen") + 
   geom_ribbon(aes(ymin = lower, ymax = upper, x = effort), alpha = 0.2, fill = "forestgreen") +
   ylim(0,1) + scale_x_continuous(breaks = xticksE, labels = xlabsE) + labs(tag = "L)") +
   theme_bw() + xlab("Sampling effort") + ylab("") + theme(axis.title.y = element_text(margin = margin(c(0, 20, 0, 0))),
-                                                          text = element_text(size = 18),
-                                                          plot.tag.position = c(0.038,0.99),
-                                                          axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
-# tag labels for the multiplot without date 
-Det <- ggarrange(B3, B6, B4, B5, 
-                 T3, T6, T4, T5,
-                 B9, B12, B10, B11,
-                 T9, T12, T10, T11,
-                 nrow = 4, ncol = 4)
-Det
-
-ggsave("figures/ModelAveFigures/DetPlotsColourDate.png", height = 15.0, width = 11.5)
-ggsave("figures/ModelAveFigures/DetPlotsColourDate.pdf", height = 15.0, width = 11.5)
-ggsave("figures/ModelAveFigures/DetPlotsColourDate.tiff", height = 15.0, width = 11.5)
-
+                                                                               text = element_text(size = 18),
+                                                                               plot.tag.position = c(0.038,0.99),
+                                                                               axis.title.x = element_text(margin = margin(c(5, 0, 0, 0))))
 
 Det2 <- ggarrange(B3, B6, B5, 
                   T3, T6, T5,
